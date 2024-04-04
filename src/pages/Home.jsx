@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, } from 'react'
 import dribbble from '../assets/dribbble.svg'
 import image from '../assets/image.png'
-
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         username: '',
@@ -25,6 +26,9 @@ const Home = () => {
         console.log(formData);
 
     };
+    const handleCreateAccount = () => {
+        navigate("/upload");
+    }
     return (
         <div className='w-[100vw] h-[100vh]  flex'>
             <div className='w-[40%] bg-[#F2D184]'>
@@ -68,11 +72,11 @@ const Home = () => {
                             <label htmlFor="password" className='mb-2 font-semibold text-xl'>Password:</label>
                             <input type="password" id="password" name="password" placeholder='6 + characters' value={formData.password} onChange={handleChange} required className='py-4 px-2 rounded-lg bg-[#F3F3F3]' />
                         </div>
-                        <div className="form-group items-baseline px-2">
-                            <input type="checkbox" id="agreeToTerms" name="agreeToTerms" checked={formData.agreeToTerms} onChange={handleChange} required className='' />
+                        <div className="form-group items-top">
+                            <input type="checkbox" id="agreeToTerms" name="agreeToTerms" checked={formData.agreeToTerms} onChange={handleChange} required className='w-[1rem] h-[2rem] ml-3' />
                             <label htmlFor="agreeToTerms" className='checkbox-label mb-2 font-medium text-xl text-[#8B8A8E]'>Creating an account means you're okay with out <span><a href='#' className='text-[#6a56ba]'>Terms of <br /> Service,Privacy Policy ,</a></span> and our default <span><a href='#' className='text-[#6a56ba]'>Notification <br /> Settings</a></span></label>
                         </div>
-                        <button type="submit" className='button'>Create Account</button>
+                        <button type="submit" className='button' onClick={handleCreateAccount}>Create Account</button>
 
                         <p className='mt-2 font-medium  text-[#8B8A8E] text-xs'> This site is protected by reCAPTCHA and the Google <br /><span><a href='#' className='text-[#6a56ba]'>Privacy Policy </a>and <a href='#' className='text-[#6a56ba]'> Terms of Service</a>apply </span> </p>
                     </form>
